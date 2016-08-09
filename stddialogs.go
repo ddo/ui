@@ -23,6 +23,15 @@ func OpenFile(w *Window) string {
 	return C.GoString(cname)
 }
 
+func OpenFolder(w *Window) string {
+	cname := C.uiOpenFolder(w.w)
+	if cname == nil {
+		return ""
+	}
+	defer C.uiFreeText(cname)
+	return C.GoString(cname)
+}
+
 func SaveFile(w *Window) string {
 	cname := C.uiSaveFile(w.w)
 	if cname == nil {
