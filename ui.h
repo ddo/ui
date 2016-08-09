@@ -136,6 +136,7 @@ _UI_EXTERN void uiEntryOnChanged(uiEntry *e, void (*f)(uiEntry *e, void *data), 
 _UI_EXTERN int uiEntryReadOnly(uiEntry *e);
 _UI_EXTERN void uiEntrySetReadOnly(uiEntry *e, int readonly);
 _UI_EXTERN uiEntry *uiNewEntry(void);
+_UI_EXTERN uiEntry *uiNewPasswordEntry(void);
 
 typedef struct uiLabel uiLabel;
 #define uiLabel(this) ((uiLabel *) (this))

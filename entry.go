@@ -24,10 +24,10 @@ var entries = make(map[*C.uiEntry]*Entry)
 // Entry is a Control that represents a space that the user can
 // type a single line of text into.
 type Entry struct {
-	c	*C.uiControl
-	e	*C.uiEntry
+	c *C.uiControl
+	e *C.uiEntry
 
-	onChanged		func(*Entry)
+	onChanged func(*Entry)
 }
 
 // NewEntry creates a new Entry.
@@ -35,6 +35,19 @@ func NewEntry() *Entry {
 	e := new(Entry)
 
 	e.e = C.uiNewEntry()
+	e.c = (*C.uiControl)(unsafe.Pointer(e.e))
+
+	C.realuiEntryOnChanged(e.e)
+	entries[e.e] = e
+
+	return e
+}
+
+// NewPasswordEntry creates a new Password Entry.
+func NewPasswordEntry() *Entry {
+	e := new(Entry)
+
+	e.e = C.uiNewPasswordEntry()
 	e.c = (*C.uiControl)(unsafe.Pointer(e.e))
 
 	C.realuiEntryOnChanged(e.e)
