@@ -32,8 +32,9 @@ func OpenFolder(w *Window) string {
 	return C.GoString(cname)
 }
 
-func SaveFile(w *Window) string {
-	cname := C.uiSaveFile(w.w)
+func SaveFile(w *Window, filename string) string {
+	cfilename := C.CString(filename)
+	cname := C.uiSaveFile(w.w, cfilename)
 	if cname == nil {
 		return ""
 	}
