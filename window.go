@@ -162,3 +162,7 @@ func (w *Window) SetMargined(margined bool) {
 func (w *Window) Center() {
 	C.uiWindowCenter(w.w)
 }
+
+func (w *Window) SetTopmost(topmost bool) {
+	C.uiWindowSetTopmost(w.w, frombool(topmost))
+}
